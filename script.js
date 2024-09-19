@@ -19,10 +19,12 @@ let numberA = 0;
 let numberB = 0;
 let operator = "";
 
+let displayValue = "0";
+
 function operate(operator, a, b) {
     let result = 0;
 
-    switch(operator) {
+    switch (operator) {
         case "+":
             result = add(a, b);
             break;
@@ -38,4 +40,16 @@ function operate(operator, a, b) {
     }
 
     return result;
+}
+
+const display = document.querySelector("#display");
+const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
+
+for (let i = 0; i < numberButtons.length; i++) {
+    let button = numberButtons[i];
+
+    button.addEventListener("click", () => {
+        displayValue += i;
+        display.textContent = parseFloat(displayValue);
+    });
 }
