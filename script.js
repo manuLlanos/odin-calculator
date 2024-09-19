@@ -20,6 +20,11 @@ let numberB = 0;
 let operator = "";
 
 let displayValue = "0";
+const display = document.querySelector("#display");
+
+function updateDisplay() {
+    display.textContent = parseFloat(displayValue);
+}
 
 function operate(operator, a, b) {
     let result = 0;
@@ -42,7 +47,7 @@ function operate(operator, a, b) {
     return result;
 }
 
-const display = document.querySelector("#display");
+
 const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
 
 for (let i = 0; i < numberButtons.length; i++) {
@@ -50,6 +55,13 @@ for (let i = 0; i < numberButtons.length; i++) {
 
     button.addEventListener("click", () => {
         displayValue += i;
-        display.textContent = parseFloat(displayValue);
+        updateDisplay();
     });
 }
+
+
+const clearButton = document.querySelector("#clear-btn");
+clearButton.addEventListener("click", () => {
+    displayValue = "0";
+    updateDisplay();
+});
