@@ -48,13 +48,14 @@ function operate(operator, a, b) {
 }
 
 
-const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
+const numberButtons = Array.from(document
+    .querySelector("#numbers")
+    .querySelectorAll("button")
+);
 
-for (let i = 0; i < numberButtons.length; i++) {
-    let button = numberButtons[i];
-
+for (let button of numberButtons) {
     button.addEventListener("click", () => {
-        displayValue += i;
+        displayValue += button.textContent;
         updateDisplay();
     });
 }
