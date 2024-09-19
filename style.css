@@ -54,4 +54,13 @@ body {
 button {
     width: 70px;
     height: 70px;
+    flex-grow: 1;
+}
+
+#operators button {
+    background-color: rgb(255, 175, 122);
+}
+
+#numbers button {
+    background-color: rgb(255, 255, 101);
 }
