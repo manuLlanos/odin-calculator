@@ -29,6 +29,8 @@ body {
     border-radius: 8px;
     margin-top: 5%;
     text-align: right;
+    padding: 8px;
+    font-size: 32px;
 }
 
 #buttons {
