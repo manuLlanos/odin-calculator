@@ -7,4 +7,26 @@
 body {
     background-color: #161632;
     color: white;
+    display: flex;
+    justify-content: center;
+}
+
+#calculator-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    height: 450px;
+    background-color: gray;
+    margin-top: 32px;
+    border-radius: 16px;
+}
+
+#display {
+    width: 90%;
+    height: 64px;
+    background-color: #34772d;
+    border-radius: 8px;
+    margin-top: 16px;
+    text-align: right;
 }
