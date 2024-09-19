@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 360px;
+    width: 350px;
     height: 450px;
     background-color: gray;
     margin-top: 32px;
@@ -24,9 +24,34 @@ body {
 
 #display {
     width: 90%;
-    height: 64px;
+    height: 20%;
     background-color: #34772d;
     border-radius: 8px;
-    margin-top: 16px;
+    margin-top: 5%;
     text-align: right;
+}
+
+#buttons {
+    display: flex;
+    height: 75%;
+}
+
+#numbers, #operators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#numbers {
+    width: 60%;
+}
+
+#operators {
+    width: 40%;
+}
+
+
+button {
+    width: 70px;
+    height: 70px;
 }
