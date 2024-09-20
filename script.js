@@ -15,8 +15,7 @@ function divide(a, b) {
 }
 
 
-let numberA = 0;
-let numberB = 0;
+let numbers = [];
 let operator = "";
 
 let displayValue = "0";
@@ -24,6 +23,11 @@ const display = document.querySelector("#display");
 
 function updateDisplay() {
     display.textContent = parseFloat(displayValue);
+}
+
+function clearDisplay() {
+    displayValue = "0";
+    updateDisplay();
 }
 
 function operate(op, a, b) {
@@ -55,13 +59,32 @@ for (let button of numberButtons) {
 
 const clearButton = document.querySelector("#clear-btn");
 clearButton.addEventListener("click", () => {
-    displayValue = "0";
-    numberA = 0;
-    numberB = 0;
+    clearDisplay();
+    numbers = [];
     updateDisplay();
 });
 
 const operatorButtons = Array.from(document.querySelectorAll(".op-btn"));
 for (let button of operatorButtons) {
-    button.addEventListener()
+    button.addEventListener("click", () => {
+        if(numbers.length > 1) {
+            numbers[0] = operate(operator, numbers[0], numbers[1]);
+            numbers.pop();
+        }
+        numbers.push(parseFloat(displayValue));
+        displayValue = "0";
+        operator = button.textContent;
+    })
 }
+
+const equalButton = document.querySelector("#equal-btn");
+equalButton.addEventListener("click", () => {
+    if(numbers.length === 0) {
+        return;
+    }
+    numbers.push(parseFloat(displayValue));
+    displayValue = operate(operator, ...numbers);
+    updateDisplay();
+    numbers = [];
+
+});
