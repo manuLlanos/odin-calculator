@@ -26,8 +26,17 @@ function updateDisplay() {
     display.textContent = parseFloat(displayValue);
 }
 
-function operate(operator, a, b) {
-    return operator(a, b);
+function operate(op, a, b) {
+    switch (op) {
+        case "+":
+            return add(a, b);
+        case "-":
+            return subtract(a, b);
+        case "*":
+            return multiply(a, b);
+        case "/":
+            return divide(a, b);
+    }
 }
 
 
@@ -47,5 +56,12 @@ for (let button of numberButtons) {
 const clearButton = document.querySelector("#clear-btn");
 clearButton.addEventListener("click", () => {
     displayValue = "0";
+    numberA = 0;
+    numberB = 0;
     updateDisplay();
 });
+
+const operatorButtons = Array.from(document.querySelectorAll(".op-btn"));
+for (let button of operatorButtons) {
+    button.addEventListener()
+}
