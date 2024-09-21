@@ -144,12 +144,3 @@ equalButton.addEventListener("click", () => {
     operator = null;
 
 });
-
-
-//debugging
-
-for (let button of Array.from(document.querySelectorAll("button"))) {
-    button.addEventListener("click", () => {
-        console.log(displayValue, numbers);
-    })
-}
