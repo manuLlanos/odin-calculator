@@ -30,6 +30,15 @@ function updateDisplay() {
 function limitDigits(num, maxDigits) {
     let strValue = num.toString();
 
+    if (strValue.includes("e")) {
+        //exponent can be 2 characters or more, like +4 or +247
+        [coefficient, exponent] = strValue.split("e");
+
+        const remainingDigits = maxDigits - 1 - exponent.length;
+
+        return limitDigits(coefficient, remainingDigits) + `e${exponent}`;
+    }
+
     const isNegative = strValue.startsWith("-");
 
     if (isNegative) {
@@ -85,7 +94,7 @@ const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
 
 for (let button of numberButtons) {
     button.addEventListener("click", () => {
-        if(isNewInput) {
+        if (isNewInput) {
             displayValue = "0";
             isNewInput = false;
         }
