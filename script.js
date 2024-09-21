@@ -22,7 +22,35 @@ let displayValue = "0";
 const display = document.querySelector("#display");
 
 function updateDisplay() {
-    display.textContent = parseFloat(displayValue);
+    let n = limitDigits(parseFloat(displayValue), 12);
+    display.textContent = n;
+}
+
+function limitDigits(num, maxDigits) {
+    let strValue = num.toString();
+
+    const isNegative = strValue.startsWith("-");
+
+    if (isNegative) {
+        strValue = strValue.slice(1);
+    }
+
+    [whole, decimal] = strValue.split(".");
+
+    if(whole.length > maxDigits) {
+        return (isNegative ? "-" : "") + Number(strValue).toExponential(maxDigits - 1);
+    }
+
+    if (decimal && (whole.length + decimal.length) > maxDigits) {
+        decimal = decimal.slice(0, maxDigits - whole.length);
+    }
+
+    let result = isNegative ? "-" + whole : whole;
+    if(decimal) {
+        result += "." + decimal;
+    }
+
+    return result;
 }
 
 function operate(op, a, b) {
