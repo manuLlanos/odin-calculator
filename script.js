@@ -47,9 +47,7 @@ function handleCalculations() {
 }
 
 
-const numberButtons = Array.from(document
-    .querySelector("#numbers")
-    .querySelectorAll("button")
+const numberButtons = Array.from(document.querySelectorAll(".number-btn")
 );
 
 for (let button of numberButtons) {
