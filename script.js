@@ -16,9 +16,9 @@ function divide(a, b) {
 
 
 let numbers = [];
-let operator = "";
-
+let operator = null;
 let displayValue = "0";
+
 const display = document.querySelector("#display");
 
 function updateDisplay() {
@@ -36,6 +36,14 @@ function operate(op, a, b) {
         case "/":
             return divide(a, b);
     }
+}
+
+function handleCalculations() {
+    numbers[0] = operate(operator, numbers[0], numbers[1]);
+    numbers.pop();
+
+    displayValue = numbers[0];
+    updateDisplay();
 }
 
 
@@ -64,18 +72,23 @@ for (let button of operatorButtons) {
     button.addEventListener("click", () => {
         numbers.push(parseFloat(displayValue));
 
-        if (numbers.length == 2) {
-            numbers[0] = operate(operator, numbers[0], numbers[1]);
-            numbers.pop();
-
-            displayValue = numbers[0];
-            updateDisplay();
-        }
+        if (numbers.length == 2) handleCalculations();
 
         operator = button.textContent;
         displayValue = "0";
     })
 }
+
+const equalButton = document.querySelector("#equal-btn");
+equalButton.addEventListener("click", () => {
+    if (numbers.length == 0 || operator === null) return;
+
+    numbers.push(parseFloat(displayValue));
+    handleCalculations();
+    numbers = [];
+    operator = null;
+
+});
 
 
 //debugging
