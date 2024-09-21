@@ -17,6 +17,7 @@ function divide(a, b) {
 
 let numbers = [];
 let operator = null;
+let isNewInput = false;
 let displayValue = "0";
 
 const display = document.querySelector("#display");
@@ -84,6 +85,10 @@ const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
 
 for (let button of numberButtons) {
     button.addEventListener("click", () => {
+        if(isNewInput) {
+            displayValue = "0";
+            isNewInput = false;
+        }
         displayValue += button.textContent;
         updateDisplay();
     });
@@ -125,6 +130,7 @@ equalButton.addEventListener("click", () => {
 
     numbers.push(parseFloat(displayValue));
     handleCalculations();
+    isNewInput = true;
     numbers = [];
     operator = null;
 
