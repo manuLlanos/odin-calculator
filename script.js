@@ -47,8 +47,7 @@ function handleCalculations() {
 }
 
 
-const numberButtons = Array.from(document.querySelectorAll(".number-btn")
-);
+const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
 
 for (let button of numberButtons) {
     button.addEventListener("click", () => {
@@ -57,6 +56,12 @@ for (let button of numberButtons) {
     });
 }
 
+
+const decimalButton = document.querySelector("#decimal-btn");
+decimalButton.addEventListener("click", () => {
+    if (displayValue.includes(decimalButton.textContent)) return;
+    displayValue += decimalButton.textContent;
+});
 
 const clearButton = document.querySelector("#clear-btn");
 clearButton.addEventListener("click", () => {
