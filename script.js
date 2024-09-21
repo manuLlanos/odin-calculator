@@ -37,7 +37,7 @@ function limitDigits(num, maxDigits) {
 
     [whole, decimal] = strValue.split(".");
 
-    if(whole.length > maxDigits) {
+    if (whole.length > maxDigits) {
         return (isNegative ? "-" : "") + Number(strValue).toExponential(maxDigits - 1);
     }
 
@@ -46,7 +46,7 @@ function limitDigits(num, maxDigits) {
     }
 
     let result = isNegative ? "-" + whole : whole;
-    if(decimal) {
+    if (decimal) {
         result += "." + decimal;
     }
 
@@ -75,6 +75,11 @@ function handleCalculations() {
 }
 
 
+function clearVariables() {
+    displayValue = "0";
+    numbers = [];
+}
+
 const numberButtons = Array.from(document.querySelectorAll(".number-btn"));
 
 for (let button of numberButtons) {
@@ -93,8 +98,7 @@ decimalButton.addEventListener("click", () => {
 
 const clearButton = document.querySelector("#clear-btn");
 clearButton.addEventListener("click", () => {
-    displayValue = "0";
-    numbers = [];
+    clearVariables();
     updateDisplay();
 });
 
@@ -113,6 +117,11 @@ for (let button of operatorButtons) {
 const equalButton = document.querySelector("#equal-btn");
 equalButton.addEventListener("click", () => {
     if (numbers.length == 0 || operator === null) return;
+    if (operator === "/" && parseFloat(displayValue) === 0) {
+        display.textContent = ">:(";
+        clearVariables();
+        return;
+    }
 
     numbers.push(parseFloat(displayValue));
     handleCalculations();
