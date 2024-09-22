@@ -152,11 +152,23 @@ equalButton.addEventListener("click", () => {
 
 const signButton = document.querySelector("#sign-btn");
 signButton.addEventListener("click", () => {
-    console.log(displayValue, typeof(displayValue));
-
     let displayStr = displayValue.toString();
 
     displayValue = displayStr.startsWith("-") ? displayStr.slice(1) : "-" + displayStr;
+
+    updateDisplay();
+});
+
+
+const deleteButton = document.querySelector("#delete-btn");
+deleteButton.addEventListener("click", () => {
+    let displayStr = displayValue.toString();
+
+    if(displayStr.length === 0) {
+        return;
+    }
+
+    displayValue = displayStr.slice(0, -1);
 
     updateDisplay();
 });
