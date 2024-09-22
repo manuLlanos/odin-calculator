@@ -149,3 +149,14 @@ equalButton.addEventListener("click", () => {
     operator = null;
 
 });
+
+const signButton = document.querySelector("#sign-btn");
+signButton.addEventListener("click", () => {
+    console.log(displayValue, typeof(displayValue));
+
+    let displayStr = displayValue.toString();
+
+    displayValue = displayStr.startsWith("-") ? displayStr.slice(1) : "-" + displayStr;
+
+    updateDisplay();
+});
